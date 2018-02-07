@@ -2,8 +2,8 @@
 This project lets you try out Tkinter/Ttk and practice it!
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Eric Kirby.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import tkinter
 from tkinter import ttk
@@ -12,37 +12,50 @@ from tkinter import ttk
 def main():
     """ Constructs a GUI with stuff on it. """
     # ------------------------------------------------------------------
-    # TODO: 2. After reading and understanding the m1e module,
+    # DONE: 2. After reading and understanding the m1e module,
     #   ** make a window that shows up. **
     # ------------------------------------------------------------------
+    root = tkinter.Tk()
 
     # ------------------------------------------------------------------
-    # TODO: 3. After reading and understanding the m2e module,
+    # DONE: 3. After reading and understanding the m2e module,
     #   ** put a Frame on the window. **
     # ------------------------------------------------------------------
+    frame1 = ttk.Frame(root, padding=20)
+    frame1.grid()
 
     # ------------------------------------------------------------------
-    # TODO: 4. After reading and understanding the m2e module,
+    # DONE: 4. After reading and understanding the m2e module,
     #   ** put a Button on the Frame. **
     # ------------------------------------------------------------------
+    go_hello_button = ttk.Button(frame1, text='Hello')
+    go_hello_button.grid()
 
     # ------------------------------------------------------------------
-    # TODO: 5. After reading and understanding the m3e module,
+    # DONE: 5. After reading and understanding the m3e module,
     #   ** make your Button respond to a button-press **
     #   ** by printing   "Hello"  on the Console.     **
     # ------------------------------------------------------------------
+    go_hello_button['command'] = (lambda: print('Hello'))
 
     # ------------------------------------------------------------------
-    # TODO: 6. After reading and understanding the m4e module,
+    # DONE: 6. After reading and understanding the m4e module,
     #   -- Put an Entry box on the Frame.
     #   -- Put a second Button on the Frame.
     #   -- Make this new Button, when pressed, print "Hello"
     #        on the Console if the current string in the Entry box
     #        is the string 'ok', but print "Goodbye" otherwise.
     # ------------------------------------------------------------------
+    my_entry_box = ttk.Entry(frame1)
+    my_entry_box.grid()
+
+    go_ok_button = ttk.Button(frame1, text='Option')
+    go_ok_button.grid()
+
+    go_ok_button['command'] = (lambda: option_print(my_entry_box.get()))
 
     # ------------------------------------------------------------------
-    # TODO: 7.
+    # DONE: 7.
     #    -- Put a second Entry on the Frame.
     #    -- Put a third Button on the frame.
     #    -- Make this new Button respond to a button-press as follows:
@@ -65,9 +78,32 @@ def main():
     #      n = int(s)
     ####################################################################
 
+    new_entry_box = ttk.Entry(frame1)
+    new_entry_box.grid()
+
+    go_type_button = ttk.Button(frame1, text='Type')
+    go_type_button.grid()
+
+    go_type_button['command'] = (lambda: text_print(my_entry_box.get(), new_entry_box.get()))
+
     # ------------------------------------------------------------------
-    # TODO: 8. As time permits, do other interesting GUI things!
+    # DONE: 8. As time permits, do other interesting GUI things!
     # ------------------------------------------------------------------
+
+    def option_print(contents):
+        if contents == 'ok':
+            print('Hello')
+        else:
+            print('Goodbye')
+
+    def text_print(contents_word, contents_num):
+        s = int(contents_num)
+
+        if s > 0:
+            for k in range(s):
+                print(contents_word)
+
+    root.mainloop()
 
 
 # ----------------------------------------------------------------------
